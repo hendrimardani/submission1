@@ -55,7 +55,7 @@ class DetailFragment : Fragment() {
             binding.tvNameDetail.text = dataName
             binding.tvUsernameDetail.text = userDetail.name
             binding.tvFollowersDetail.text = "${userDetail.followers} Followers"
-            binding.tvFollowingDetail.text = "${userDetail.following} Followings"
+            binding.tvFollowingDetail.text = "${userDetail.following} Following"
         }
 
         setUpTabLayout()
