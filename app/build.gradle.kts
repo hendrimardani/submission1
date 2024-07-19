@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.viewpager2)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.glide)
     implementation(libs.com.squareup.retrofit2.retrofit2)

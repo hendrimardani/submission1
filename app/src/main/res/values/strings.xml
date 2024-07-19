@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MySubmission1</string>
     <string name="searchbar_hint">Mau cari siapa ?</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_1">Following</string>
+    <string name="text_2">Followers</string>
 </resources>
