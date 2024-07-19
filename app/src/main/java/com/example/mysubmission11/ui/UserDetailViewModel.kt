@@ -2,12 +2,10 @@ package com.example.mysubmission11.ui
 
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.mysubmission11.data.response.GithubUserResponse
-import com.example.mysubmission11.data.response.User
+import com.example.mysubmission11.data.response.UserDetail
 import com.example.mysubmission11.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,38 +19,30 @@ class UserDetailViewModel(application: Application): AndroidViewModel(applicatio
         private const val QUERY_USER = "hendri"
     }
 
-    private val _nama = MutableLiveData<List<User>>()
-    val nama: LiveData<List<User>> = _nama
+    private val _namaQueryUser = MutableLiveData<UserDetail>()
+    val namaQueryUser: LiveData<UserDetail> = _namaQueryUser
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    var totalCount = 0
-
     init {
-        findUserDetail(QUERY_USER)
+        findUserDetail(namaQueryUser.toString())
     }
 
     fun findUserDetail(queryUser: String) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().getUsers(queryUser)
-        client.enqueue(object : Callback<GithubUserResponse> {
-            override fun onResponse(call: Call<GithubUserResponse>, response: Response<GithubUserResponse>) {
+        val client = ApiConfig.getApiService().getDetailUser(queryUser)
+        client.enqueue(object : Callback<UserDetail> {
+            override fun onResponse(
+                call: Call<UserDetail>,
+                response: Response<UserDetail>
+            ) {
                 _isLoading.value = false
-                if (response.isSuccessful) {
-                    totalCount = response.body()!!.totalCount
-                    if (totalCount == 0) {
-                        _nama.value = response.body()?.users
-                        Toast.makeText(context, "DATA TIDAK ADA !", Toast.LENGTH_LONG).show()
-                    } else {
-                        _nama.value = response.body()?.users
-                    }
-                } else {
-                    Log.e(TAG, "onFailure : ${response.message()}")
-                }
+                if (response.isSuccessful) _namaQueryUser.value = response.body()
+                else Log.e(TAG, "onFailure : ${response.message()}")
             }
 
-            override fun onFailure(call: Call<GithubUserResponse>, t: Throwable) {
+            override fun onFailure(call: Call<UserDetail>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure : ${t.message}")
             }

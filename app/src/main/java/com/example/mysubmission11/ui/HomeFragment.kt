@@ -35,13 +35,9 @@ class HomeFragment : Fragment() {
         val itemDecoration = DividerItemDecoration(requireActivity(), LinearLayoutManager(requireActivity()).orientation)
         binding.rvUsers.addItemDecoration(itemDecoration)
 
-        userViewModel.isLoading.observe(requireActivity()) {
-            showLoading(it)
-        }
+        userViewModel.isLoading.observe(requireActivity()) { bool -> showLoading(bool) }
 
-        userViewModel.nama.observe(requireActivity()) {
-            setUserData(it)
-        }
+        userViewModel.nama.observe(requireActivity()) { listUser -> setUserData(listUser) }
 
         searchBarViewHandler()
     }

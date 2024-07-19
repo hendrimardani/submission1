@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-data class GithubUserDetailResponse(
+data class UserDetail(
 
 	@field:SerializedName("login")
 	val login: String,
@@ -36,12 +36,12 @@ data class GithubUserDetailResponse(
 		return 0
 	}
 
-	companion object CREATOR : Parcelable.Creator<GithubUserDetailResponse> {
-		override fun createFromParcel(parcel: Parcel): GithubUserDetailResponse {
-			return GithubUserDetailResponse(parcel)
+	companion object CREATOR : Parcelable.Creator<UserDetail> {
+		override fun createFromParcel(parcel: Parcel): UserDetail {
+			return UserDetail(parcel)
 		}
 
-		override fun newArray(size: Int): Array<GithubUserDetailResponse?> {
+		override fun newArray(size: Int): Array<UserDetail?> {
 			return arrayOfNulls(size)
 		}
 	}
