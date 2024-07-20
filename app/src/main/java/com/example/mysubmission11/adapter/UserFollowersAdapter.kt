@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mysubmission11.data.response.UserFollowersFollowing
-import com.example.mysubmission11.databinding.ItemFollowersBinding
+import com.example.mysubmission11.databinding.ItemFollowersFollowingBinding
 
 class UserFollowersAdapter(val context: Context): ListAdapter<UserFollowersFollowing, UserFollowersAdapter.ViewHolder>(DIFF_CALLBACK){
 
-    inner class ViewHolder(val context: Context, val binding: ItemFollowersBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val context: Context, val binding: ItemFollowersFollowingBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(userDetail: UserFollowersFollowing) {
             Glide.with(context)
@@ -35,7 +35,7 @@ class UserFollowersAdapter(val context: Context): ListAdapter<UserFollowersFollo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemFollowersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemFollowersFollowingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(context, binding)
     }
 
