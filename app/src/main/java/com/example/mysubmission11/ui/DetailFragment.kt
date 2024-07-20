@@ -10,7 +10,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.mysubmission11.R
 import com.example.mysubmission11.adapter.SectionPagerAdapter
-import com.example.mysubmission11.data.response.UserDetail
 import com.example.mysubmission11.databinding.FragmentDetailBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -39,20 +38,22 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dataName = DetailFragmentArgs.fromBundle(arguments as Bundle).nama
+
+        val dataUsername = DetailFragmentArgs.fromBundle(arguments as Bundle).nama
         val dataImage = DetailFragmentArgs.fromBundle(arguments as Bundle).gambar
 
-        binding.tvNameDetail.text = dataName
+
+        binding.tvNameDetail.text = dataUsername
         Glide.with(requireActivity())
             .load("$dataImage")
             .into(binding.ivDetail)
 
-        userDetailViewModel.findUserDetail(dataName)
+        userDetailViewModel.findUserDetail(dataUsername)
 
         userDetailViewModel.isLoading.observe(requireActivity()) { bool -> showLoading(bool) }
 
         userDetailViewModel.namaQueryUser.observe(viewLifecycleOwner) {  userDetail ->
-            binding.tvNameDetail.text = dataName
+            binding.tvNameDetail.text = dataUsername
             binding.tvUsernameDetail.text = userDetail.name
             binding.tvFollowersDetail.text = "${userDetail.followers} Followers"
             binding.tvFollowingDetail.text = "${userDetail.following} Following"

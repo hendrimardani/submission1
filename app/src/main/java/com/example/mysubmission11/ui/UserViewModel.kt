@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mysubmission11.data.response.GithubUserResponse
 import com.example.mysubmission11.data.response.User
+import com.example.mysubmission11.data.response.UserDetail
 import com.example.mysubmission11.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,6 +47,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
                         Toast.makeText(context, "DATA TIDAK ADA !", Toast.LENGTH_LONG).show()
                     } else {
                         _nama.value = response.body()?.users
+                        Log.i(TAG, response.toString())
                     }
                 } else {
                     Log.e(TAG, "onFailure : ${response.message()}")

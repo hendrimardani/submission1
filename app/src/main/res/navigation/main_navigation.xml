@@ -11,7 +11,10 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
-            app:destination="@id/detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_followersFragment"
+            app:destination="@id/followersFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
@@ -28,5 +31,25 @@
             android:name="gambar"
             app:argType="string"
             android:defaultValue="default gambar" />
+    </fragment>
+    <fragment
+        android:id="@+id/followersFragment"
+        android:name="com.example.mysubmission11.FollowersFragment"
+        android:label="fragment_followers"
+        tools:layout="@layout/fragment_followers" >
+        <argument
+            android:name="nama"
+            app:argType="string"
+            android:defaultValue="default nama" />
+    </fragment>
+    <fragment
+        android:id="@+id/followingFragment"
+        android:name="com.example.mysubmission11.FollowingFragment"
+        android:label="fragment_following"
+        tools:layout="@layout/fragment_following" >
+        <argument
+            android:name="nama"
+            app:argType="string"
+            android:defaultValue="default nama" />
     </fragment>
 </navigation>

@@ -12,11 +12,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserDetailViewModel(application: Application): AndroidViewModel(application) {
-    private val context = getApplication<Application>().applicationContext
 
     companion object {
         private const val TAG = "TEST HASIL RESPONSE"
-        private const val QUERY_USER = "hendri"
     }
 
     private val _namaQueryUser = MutableLiveData<UserDetail>()
