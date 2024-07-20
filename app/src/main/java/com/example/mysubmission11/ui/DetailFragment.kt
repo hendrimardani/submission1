@@ -50,9 +50,6 @@ class DetailFragment : Fragment() {
             .into(binding.ivDetail)
 
         userDetailViewModel.findUserDetail(dataUsername)
-
-        userDetailViewModel.isLoading.observe(requireActivity()) { bool -> showLoading(bool) }
-
         userDetailViewModel.namaQueryUser.observe(viewLifecycleOwner) {  userDetail ->
             binding.tvNameDetail.text = dataUsername
             binding.tvUsernameDetail.text = userDetail.name
@@ -71,11 +68,6 @@ class DetailFragment : Fragment() {
         TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        if (isLoading) binding.progressBar.visibility = View.VISIBLE
-        else binding.progressBar.visibility = View.GONE
     }
 
     override fun onDestroy() {
