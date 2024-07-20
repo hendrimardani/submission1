@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.mysubmission11.R
@@ -59,11 +60,11 @@ class DetailFragment : Fragment() {
             binding.tvFollowingDetail.text = "${userDetail.following} Following"
         }
 
-        setUpTabLayout()
+        setUpTabLayout(dataUsername)
     }
 
-    private fun setUpTabLayout() {
-        val sectionPagerAdapter = SectionPagerAdapter(this)
+    private fun setUpTabLayout(dataUsername: String) {
+        val sectionPagerAdapter = SectionPagerAdapter(this, dataUsername)
         val viewPager2: ViewPager2= requireView().findViewById(R.id.view_pager2)
         viewPager2.adapter = sectionPagerAdapter
         val tabLayout: TabLayout = requireView().findViewById(R.id.tabLayout)

@@ -9,8 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mysubmission11.adapter.SectionPagerAdapter.Companion.EXTRA_USER
 import com.example.mysubmission11.adapter.UserFollowersAdapter
-import com.example.mysubmission11.data.response.UserFollowers
+import com.example.mysubmission11.data.response.UserFollowersFollowing
 import com.example.mysubmission11.databinding.FragmentFollowersBinding
 import com.example.mysubmission11.ui.UserFollowersViewModel
 
@@ -34,17 +35,17 @@ class FollowersFragment : Fragment() {
         val itemDecoration = DividerItemDecoration(requireActivity(), LinearLayoutManager(requireActivity()).orientation)
         binding.rvFollowers.addItemDecoration(itemDecoration)
 
-//        val dataNama = FollowersFragmentArgs.fromBundle(arguments as Bundle).nama
+//        val dataNama = arguments?.getString(EXTRA_USER)
 //        Log.e("TEST TEST", dataNama.toString())
 
         userFollowersViewModel.isLoading.observe(requireActivity()) { bool -> showLoading(bool) }
-
-        userFollowersViewModel.namaFollowers.observe(requireActivity()) { userDetail -> setUserData(userDetail) }
-
+        userFollowersViewModel.namaFollowers.observe(requireActivity()) { userFollowersFollowing ->
+            setUserData(userFollowersFollowing)
+        }
         userFollowersViewModel.findUserFollowers("hendrimardani")
     }
 
-    private fun setUserData(userFollowers: List<UserFollowers>) {
+    private fun setUserData(userFollowers: List<UserFollowersFollowing>) {
         val adapter = UserFollowersAdapter(requireActivity())
         adapter.submitList(userFollowers)
         binding.rvFollowers.adapter = adapter

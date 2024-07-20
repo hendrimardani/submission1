@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName
 data class GithubUserFollowersResponse(
 
 	@field:SerializedName("GithubUserFollowersResponse")
-	val userFollowers: List<UserFollowers>
+	val userFollowersFollowing: List<UserFollowersFollowing>
 )
 
-data class UserFollowers(
+data class UserFollowersFollowing(
 
 	@field:SerializedName("login")
 	val login: String,

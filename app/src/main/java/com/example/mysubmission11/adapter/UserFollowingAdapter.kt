@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.mysubmission11.data.response.UserFollowersFollowing
 import com.example.mysubmission11.databinding.ItemFollowersBinding
 
-class UserFollowersAdapter(val context: Context): ListAdapter<UserFollowersFollowing, UserFollowersAdapter.ViewHolder>(DIFF_CALLBACK){
+class UserFollowingAdapter(val context: Context): ListAdapter<UserFollowersFollowing, UserFollowingAdapter.ViewHolder>(DIFF_CALLBACK){
 
     inner class ViewHolder(val context: Context, val binding: ItemFollowersBinding) : RecyclerView.ViewHolder(binding.root) {
 
