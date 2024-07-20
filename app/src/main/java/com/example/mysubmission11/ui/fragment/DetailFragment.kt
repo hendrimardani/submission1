@@ -1,4 +1,4 @@
-package com.example.mysubmission11.ui
+package com.example.mysubmission11.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.mysubmission11.R
 import com.example.mysubmission11.adapter.SectionPagerAdapter
+import com.example.mysubmission11.data.response.UserDetail
 import com.example.mysubmission11.databinding.FragmentDetailBinding
+import com.example.mysubmission11.ui.viewmodel.UserDetailViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -19,6 +20,7 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private val userDetailViewModel by viewModels<UserDetailViewModel>()
+    private lateinit var dataUsername: String
 
     companion object {
         private val TAB_TITLES = intArrayOf(
@@ -39,10 +41,8 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        val dataUsername = DetailFragmentArgs.fromBundle(arguments as Bundle).nama
+        dataUsername = DetailFragmentArgs.fromBundle(arguments as Bundle).nama
         val dataImage = DetailFragmentArgs.fromBundle(arguments as Bundle).gambar
-
 
         binding.tvNameDetail.text = dataUsername
         Glide.with(requireActivity())
@@ -51,13 +51,17 @@ class DetailFragment : Fragment() {
 
         userDetailViewModel.findUserDetail(dataUsername)
         userDetailViewModel.namaQueryUser.observe(viewLifecycleOwner) {  userDetail ->
-            binding.tvNameDetail.text = dataUsername
-            binding.tvUsernameDetail.text = userDetail.name
-            binding.tvFollowersDetail.text = "${userDetail.followers} Followers"
-            binding.tvFollowingDetail.text = "${userDetail.following} Following"
+            getOutput(userDetail)
         }
 
         setUpTabLayout(dataUsername)
+    }
+
+    private fun getOutput(userDetail: UserDetail) {
+        binding.tvNameDetail.text = dataUsername
+        binding.tvUsernameDetail.text = userDetail.name
+        binding.tvFollowersDetail.text = "${userDetail.followers} Followers"
+        binding.tvFollowingDetail.text = "${userDetail.following} Following"
     }
 
     private fun setUpTabLayout(dataUsername: String) {

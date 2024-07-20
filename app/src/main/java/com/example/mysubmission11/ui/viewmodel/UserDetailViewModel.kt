@@ -1,4 +1,4 @@
-package com.example.mysubmission11.ui
+package com.example.mysubmission11.ui.viewmodel
 
 import android.app.Application
 import android.util.Log

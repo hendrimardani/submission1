@@ -3,8 +3,8 @@ package com.example.mysubmission11.adapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.mysubmission11.FollowersFragment
-import com.example.mysubmission11.FollowingFragment
+import com.example.mysubmission11.ui.fragment.FollowersFragment
+import com.example.mysubmission11.ui.fragment.FollowingFragment
 
 class SectionPagerAdapter(fragment: Fragment, val userName: String) : FragmentStateAdapter(fragment) {
 

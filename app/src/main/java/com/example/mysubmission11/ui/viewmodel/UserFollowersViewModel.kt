@@ -1,4 +1,4 @@
-package com.example.mysubmission11.ui
+package com.example.mysubmission11.ui.viewmodel
 
 import android.app.Application
 import android.util.Log
@@ -11,25 +11,25 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserFollowingViewModel(application: Application): AndroidViewModel(application) {
+class UserFollowersViewModel(application: Application): AndroidViewModel(application) {
     companion object {
         private const val TAG = "TEST HASIL RESPONSE"
         private const val QUERY_USER = "hendri"
     }
 
-    private val _namaFollowing = MutableLiveData<List<UserFollowersFollowing>>()
-    val namaFollowing: LiveData<List<UserFollowersFollowing>> = _namaFollowing
+    private val _namaFollowers = MutableLiveData<List<UserFollowersFollowing>>()
+    val namaFollowers: LiveData<List<UserFollowersFollowing>> = _namaFollowers
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     init {
-        findUserFollowing(QUERY_USER)
+        findUserFollowers(QUERY_USER)
     }
 
-    fun findUserFollowing(queryUser: String) {
+    fun findUserFollowers(queryUser: String) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().getFollowingUser(queryUser)
+        val client = ApiConfig.getApiService().getFollowersUser(queryUser)
         client.enqueue(object : Callback<List<UserFollowersFollowing>> {
             override fun onResponse(
                 call: Call<List<UserFollowersFollowing>>,
@@ -37,7 +37,7 @@ class UserFollowingViewModel(application: Application): AndroidViewModel(applica
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful)  {
-                    _namaFollowing.value = response.body()
+                    _namaFollowers.value = response.body()
                     Log.d(TAG, response.toString())
                 }
                 else Log.e(TAG, "onFailure : ${response.message()}")

@@ -1,4 +1,4 @@
-package com.example.mysubmission11.ui
+package com.example.mysubmission11.ui.viewmodel
 
 import android.app.Application
 import android.util.Log
@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mysubmission11.data.response.GithubUserResponse
 import com.example.mysubmission11.data.response.User
-import com.example.mysubmission11.data.response.UserDetail
 import com.example.mysubmission11.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
