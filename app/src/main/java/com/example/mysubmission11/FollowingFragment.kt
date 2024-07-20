@@ -36,14 +36,14 @@ class FollowingFragment : Fragment() {
         val itemDecoration = DividerItemDecoration(requireActivity(), LinearLayoutManager(requireActivity()).orientation)
         binding.rvFollowing.addItemDecoration(itemDecoration)
 
-//        val dataNama = arguments?.getString(EXTRA_USER)
-//        Log.e("TEST TEST", dataNama.toString())
+        val dataNama = arguments?.getString(EXTRA_USER)
+        Log.e("TEST TEST", dataNama.toString())
 
         userFollowingViewModel.isLoading.observe(requireActivity()) { bool -> showLoading(bool)}
         userFollowingViewModel.namaFollowing.observe(requireActivity()) { userFollowersFollowing ->
             setUserData(userFollowersFollowing)
         }
-        userFollowingViewModel.findUserFollowing("hendrimardani")
+        userFollowingViewModel.findUserFollowing(dataNama!!)
     }
 
     private fun setUserData(userFollowing: List<UserFollowersFollowing>) {

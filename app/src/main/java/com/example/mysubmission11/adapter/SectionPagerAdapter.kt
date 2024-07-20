@@ -19,15 +19,15 @@ class SectionPagerAdapter(fragment: Fragment, val userName: String) : FragmentSt
         when (position) {
             0 -> {
                 fragment = FollowersFragment()
-//                fragment.arguments = Bundle().apply {
-//                    putString(EXTRA_USER, userName)
-//                }
+                fragment.arguments = Bundle().apply {
+                    putString(EXTRA_USER, userName)
+                }
             }
             1 -> {
                 fragment = FollowingFragment()
-//                fragment.arguments = Bundle().apply {
-//                    putString(EXTRA_USER, userName)
-//                }
+                fragment.arguments = Bundle().apply {
+                    putString(EXTRA_USER, userName)
+                }
             }
         }
         return fragment as Fragment
