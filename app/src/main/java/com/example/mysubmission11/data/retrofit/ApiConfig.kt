@@ -4,15 +4,20 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.example.mysubmission11.BuildConfig
 
 class ApiConfig {
 
     companion object {
+
+        val mySuperSecretKey = BuildConfig.KEY
+        val myBaseUrl = BuildConfig.BASE_URL
+
         fun getApiService(): ApiService {
             val authInterceptor = Interceptor { chain ->
                 val req = chain.request()
                 val requestHeaders = req.newBuilder()
-                    .addHeader("Authorization", "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")
+                    .addHeader("Authorization", mySuperSecretKey)
                     .build()
                 chain.proceed(requestHeaders)
             }
@@ -22,7 +27,7 @@ class ApiConfig {
                 .build()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                .baseUrl(myBaseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
